@@ -1,32 +1,4 @@
-<?php
-session_start();
-include("connect.php");
-if(isset($_POST['login'])){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE Email ='".$email."' AND Pasword='".$password."'";
-    $result = $conn->query($sql);
-
-    //if($result->num_rows > 0){
-    //    $_SESSION['Email'] = $email;
-   //     header("location:homepage.php");
-   //     die;
-   // }
-
-    $row=mysqli_fetch_array($result);
-    if($row["Hierachy"]=="Client"){
-        $_SESSION['Email'] = $email;
-
-        header("location:homepage.php");
-    }
-    else if($row["Hierachy"]=="Admin"){
-        $_SESSION['Email'] = $email;
-
-        header("<location:Admin/admin dashboard.php");
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
